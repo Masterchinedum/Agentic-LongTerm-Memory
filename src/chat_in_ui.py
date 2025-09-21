@@ -28,7 +28,6 @@ with gr.Blocks() as demo:
                     [],
                     elem_id="chatbot",
                     height=500,
-                    avatar_images=("images/AI_RT.png", "images/openai.png"),
                 )
 
             with gr.Row():

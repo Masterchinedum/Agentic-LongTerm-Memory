@@ -1,8 +1,6 @@
 # 🧠 Advanced Chatbot with Long-Term Memory
 
-This project demonstrates an advanced AI chatbot with agentic capabilities and long-term memory using vector databases and semantic search.
-
-Feel free to ⭐️ the repo if it helps you understand long-term memory for agents!
+An advanced AI chatbot with agentic capabilities and long-term memory using vector databases and semantic search.
 
 ## 🚀 Features
 - **Vector Database Integration** (ChromaDB) for semantic memory search
@@ -11,130 +9,122 @@ Feel free to ⭐️ the repo if it helps you understand long-term memory for age
 - **Robust Error Handling** and fallback mechanisms
 - **Production-Ready Architecture**
 
-## 📚 What You'll Learn
-1. How to design a **custom agentic long-term memory**.
-2. How to implement **long-term memory using Vector DB** with semantic search.
-3. How to structure memory into **semantic**, **episodic**, and **procedural** components.
-4. How to build **production-ready chatbots** with advanced memory capabilities.
+## 🎯 What This Chatbot Does
+- Remembers conversations using semantic search in vector databases
+- Can dynamically call functions based on user requests
+- Stores user information and retrieves it contextually
+- Maintains long-term memory across sessions
+- Provides intelligent responses based on conversation history
 
-🔗 A great reference paper for this project:  
-[Memory in LLM Agents](https://arxiv.org/abs/2310.08560)
+## 💾 Installation & Setup
 
-## ▶️ Watch the Demo  
-📺 **YouTube Video:** [Link](https://youtu.be/jw67V_gBzR0?si=OagwK44anyRoLimE)
+### Prerequisites
+- Python 3.11 (recommended - Python 3.12 may have compatibility issues)
+- OpenAI API key
 
+### Installation Steps
 
-## 💾 How to Run the Project
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd Agentic-LongTerm-Memory
+   ```
 
-⚠️ Note: Please use Python 3.11 as Python 3.12 may cause compatibility issues with some dependencies.
-
-1. **Create a virtual environment**  
+2. **Create virtual environment**
    ```bash
    python -m venv venv
-   source venv/bin/activate  # or venv\Scripts\activate on Windows
+   source venv/bin/activate  # Linux/Mac
+   # or
+   venv\Scripts\activate     # Windows
    ```
-2. Install dependencies
-    ```bash
-    pip install -r requirements.txt
-    ```
-3. Prepare the databases for the chatbot
-    ```bash
-    python src/prepare_sqldb.py          # Setup SQLite DB  
-    python src/check_sqldb.py            # Inspect DB contents  
-    python src/prepare_vectordb.py       # Setup Vector DB  
-    python src/check_vectordb.py         # Inspect Vector DB 
-    ```
-4. Run the chatbot
-    - Run in terminal:
-        ```bash
-        python src/chat_in_terminal.py
-        ```
-    - Run with Gradio UI:
-        ```bash
-        python src/chat_in_ui.py
-        ```
-    
-# Project Schemas:
-**LLM Default Behavior**
 
-![Schema 1](images/default_behavior.png)
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-**Concept of Memory**
+4. **Set up environment variables**
+   Create a `.env` file in the root directory:
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
 
-![Schema 2](images/memory.png)
+5. **Initialize databases**
+   ```bash
+   python src/prepare_sqldb.py     # Setup SQLite database
+   python src/prepare_vectordb.py  # Setup Vector database
+   ```
 
-**Basic Chatbot Schema**
+6. **Verify setup (optional)**
+   ```bash
+   python src/check_sqldb.py       # Check SQLite database
+   python src/check_vectordb.py    # Check Vector database
+   ```
 
-![Schema 3](images/basic_chatbot.png)
+## 🚀 Usage
 
-**Agentic_Chatbot_v2 Schema**
-
-![Schema 4](images/chatbot_agentic_v2.png)
-
-**Agentic_Chatbot_v3 Schema**
-
-![Schema 5](images/agentic_chatbot_v3.png)
-
-**Longterm Memory with Graph DB and Vector DB using LangGraph**
-
-![Schema 6](images/langgraph_1_schema.png)
-
-**Longterm Memory (Semantic, Episodical, and Procedural) with LangGraph**
-
-![Schema 7](images/langgraph_course_theory.png)
-
-![Schema 8](images/langgraph_2_updated.png)
-
-🧩 Technologies Used
-- Python
-- openai
-- LangChain
-- LangGraph
-- SQLite
-- Chroma (Vector DBs)
-- Gradio (UI)
-
-📂 Project Structure (High-Level)
+### Terminal Interface
 ```bash
-src/
-├── bot.py                     # Terminal-based chatbot
-├── bot_ui.py                  # Gradio UI version
-├── prepare_sqldb.py           # Creates SQLite DB
-├── prepare_vectordb.py        # Creates Vector DB
-├── check_sqldb.py             # Checks SQLite DB contents
-├── check_vectordb.py          # Checks Vector DB contents
-└── utils/
-    ├── chat_history_manager.py
-    ├── chatbot_agentic_v1.py
-    ├── chatbot_agentic_v2.py
-    ├── chatbot.py
-    ├── config.py
-    ├── prepare_system_prompt.py
-    ├── search_manager.py
-    ├── sql_manager.py
-    ├── user_manager.py
-    ├── utils.py
-    └── vector_db_manager.py
-
-langgraph/
-├── online-course/             # Memory system from DeepLearning.ai course
-└── website-tutorial/          # Tutorial-based memory system
-
-letta/
-├── chatbot_with_longterm_memory.py
-└── MemGPT_Paper.pdf           # Research paper reference
-
-data/
-├── vectordb/
-└── chatbot.db
-
-images/
-
-├── requirements.txt
+python src/chat_in_terminal.py
 ```
-**`src` Folder Structure**
 
-![Schema 9](images/src_structure.png)
+### Web Interface (Gradio UI)
+```bash
+python src/chat_in_ui.py
+```
 
+## 🏗️ Project Structure
+```
+Agentic-LongTerm-Memory/
+├── src/
+│   ├── chat_in_terminal.py     # Terminal chat interface
+│   ├── chat_in_ui.py          # Web UI chat interface
+│   ├── prepare_sqldb.py       # SQL database setup
+│   ├── prepare_vectordb.py    # Vector database setup
+│   ├── check_sqldb.py         # SQL database checker
+│   ├── check_vectordb.py      # Vector database checker
+│   └── utils/
+│       ├── chatbot.py          # Main chatbot implementation
+│       ├── vector_db_manager.py # Vector database management
+│       ├── sql_manager.py      # SQL database management
+│       ├── chat_history_manager.py # Chat history handling
+│       ├── user_manager.py     # User information management
+│       ├── search_manager.py   # Search functionality
+│       ├── prepare_system_prompt.py # System prompt preparation
+│       ├── config.py           # Configuration settings
+│       └── utils.py            # Utility functions
+├── config/
+│   └── config.yml             # Configuration file
+├── data/                      # Database files (auto-created)
+├── requirements.txt           # Python dependencies
+├── docker-compose.yml         # Docker configuration
+└── README.md                 # This file
+```
 
+## ⚙️ Configuration
 
+Edit `config/config.yml` to customize:
+- OpenAI model settings
+- Database paths
+- Memory management parameters
+- Function call limits
+
+## 🔧 Key Components
+
+- **Chatbot**: Main class with agentic capabilities
+- **Vector DB Manager**: Handles semantic search and memory storage
+- **SQL Manager**: Manages structured data and chat history
+- **User Manager**: Handles user information and preferences
+- **Function Calling**: Dynamic function execution based on user input
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+---
+
+*Built with OpenAI GPT models, ChromaDB, and modern Python practices.*
