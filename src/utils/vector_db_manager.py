@@ -24,8 +24,18 @@ class VectorDBManager:
             model_name=self.cfg.embedding_model
         )
 
-        self.db_client = chromadb.PersistentClient(
-            path=str(self.cfg.vectordb_dir))
+        # Configure ChromaDB client based on config
+        if hasattr(self.cfg, 'use_docker') and self.cfg.use_docker:
+            # Use Docker ChromaDB
+            self.db_client = chromadb.HttpClient(
+                host=getattr(self.cfg, 'docker_host', 'localhost'),
+                port=getattr(self.cfg, 'docker_port', 8000)
+            )
+        else:
+            # Use local ChromaDB
+            self.db_client = chromadb.PersistentClient(
+                path=str(self.cfg.vectordb_dir))
+                
         self.db_collection = self.db_client.get_or_create_collection(
             name=self.cfg.collection_name,
             embedding_function=self.embedding_function,

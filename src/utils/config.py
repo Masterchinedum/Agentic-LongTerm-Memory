@@ -26,3 +26,6 @@ class Config:
         self.collection_name = config["vectordb_config"]["collection_name"]
         self.embedding_model = config["vectordb_config"]["embedding_model"]
         self.k = config["vectordb_config"]["k"]
+        self.use_docker = config["vectordb_config"].get("use_docker", False)
+        self.docker_host = config["vectordb_config"].get("docker_host", "localhost")
+        self.docker_port = config["vectordb_config"].get("docker_port", 8000)
