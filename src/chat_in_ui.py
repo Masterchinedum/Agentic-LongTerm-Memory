@@ -3,7 +3,7 @@ import gradio as gr
 from utils.chatbot import Chatbot
 
 # Initialize chatbot instance
-chatbot = Chatbot()
+ai_chatbot = Chatbot()
 
 
 def respond(history, user_input):
@@ -11,12 +11,18 @@ def respond(history, user_input):
         return history, ""
 
     start_time = time.time()
-    response = chatbot.chat(user_input)
+    response = ai_chatbot.chat(user_input)
     end_time = time.time()
 
-    # Append user and assistant responses to the history
-    history.append(
-        (user_input, f"{response} ({round(end_time - start_time, 2)}s)"))
+    # Append user and assistant messages in the correct format for Gradio
+    history.append({
+        "role": "user", 
+        "content": user_input
+    })
+    history.append({
+        "role": "assistant", 
+        "content": f"{response} ({round(end_time - start_time, 2)}s)"
+    })
     return history, ""
 
 
@@ -28,6 +34,7 @@ with gr.Blocks() as demo:
                     [],
                     elem_id="chatbot",
                     height=500,
+                    type="messages"
                 )
 
             with gr.Row():

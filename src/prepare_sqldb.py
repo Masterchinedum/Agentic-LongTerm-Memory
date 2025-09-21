@@ -14,7 +14,7 @@ def create_user_info():
         - `user_info`: Stores user details (e.g., name, occupation, location, etc.).
         - `chat_history`: Records chat interactions with timestamps and session IDs.
         - `summary`: Stores summarized chat sessions.
-    - Inserts a sample user (`Farzad Roozitalab`) if no user record exists.
+    - Creates empty tables ready for use (no sample data inserted).
 
     Tables:
         user_info:
@@ -83,12 +83,9 @@ def create_user_info():
     );
     """)
 
-    # Insert Sample User if Not Exists (leaving age, gender, interests empty)
-    cursor.execute("""
-    INSERT INTO user_info (name, last_name, occupation, location, age, gender, interests)
-    SELECT 'Farzad', 'Roozitalab', 'Senior ML Engineer', 'Canada', NULL, NULL, NULL
-    WHERE NOT EXISTS (SELECT 1 FROM user_info);
-    """)
+    # Database tables created successfully - no sample data inserted
+    print("✅ Database tables created successfully!")
+    print("📝 The database is now ready for use with your chatbot.")
 
     # Commit changes and close the connection
     conn.commit()
