@@ -61,6 +61,17 @@ An advanced AI chatbot with agentic capabilities and long-term memory using vect
    python src/check_vectordb.py    # Check Vector database
    ```
 
+7. **Test for production readiness**
+   ```bash
+   # Quick test (equivalent to npm run build)
+   python test_production.py
+   
+   # Comprehensive test with all tools
+   ./test_all.sh      # Linux/Mac
+   # or
+   test_all.bat       # Windows
+   ```
+
 ## 🚀 Usage
 
 ### Terminal Interface
@@ -98,7 +109,74 @@ Agentic-LongTerm-Memory/
 ├── data/                      # Database files (auto-created)
 ├── requirements.txt           # Python dependencies
 ├── docker-compose.yml         # Docker configuration
+├── test_production.py        # Production readiness test script
+├── tests/                    # Unit tests
 └── README.md                 # This file
+```
+
+## 🧪 Testing for Production
+
+### Quick Production Test (equivalent to `npm run build`)
+```bash
+python test_production.py
+```
+
+### Manual Testing Commands
+
+#### 1. **Syntax & Import Testing**
+```bash
+# Test all imports work correctly
+python -c "from src.utils.chatbot import Chatbot; print('✅ Chatbot imports successfully')"
+python -c "from src.chat_in_terminal import *; print('✅ Terminal app imports successfully')"
+python -c "from src.chat_in_ui import *; print('✅ UI app imports successfully')"
+
+# Test syntax of all Python files
+python -m py_compile src/utils/*.py
+python -m py_compile src/*.py
+```
+
+#### 2. **Code Quality & Linting**
+```bash
+# Install linting tools
+pip install flake8 black mypy
+
+# Check code style
+flake8 src/ --max-line-length=120
+
+# Format code (optional)
+black src/
+
+# Type checking (optional)
+mypy src/
+```
+
+#### 3. **Database Testing**
+```bash
+# Test database setup
+python src/prepare_sqldb.py
+python src/prepare_vectordb.py
+
+# Verify databases
+python src/check_sqldb.py
+python src/check_vectordb.py
+```
+
+#### 4. **Unit Tests**
+```bash
+# Install pytest
+pip install pytest
+
+# Run tests
+pytest tests/ -v
+```
+
+#### 5. **Integration Testing**
+```bash
+# Test terminal interface (manual)
+python src/chat_in_terminal.py
+
+# Test web interface (manual)
+python src/chat_in_ui.py
 ```
 
 ## ⚙️ Configuration

@@ -16,3 +16,9 @@ ipykernel==6.29.5
 SQLAlchemy
 db-sqlite3
 langchain_community
+
+# Development/Testing Dependencies
+flake8>=6.0.0
+black>=23.0.0
+pytest>=7.0.0
+mypy>=1.0.0
