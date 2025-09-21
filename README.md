@@ -1,18 +1,24 @@
-# 🧠 Agentic Long-Term Memory
+# 🧠 Advanced Chatbot with Long-Term Memory
 
-This project explores the concept of long-term memory in AI agents and demonstrates how to build agentic memory systems using various approaches and tools. 
+This project demonstrates an advanced AI chatbot with agentic capabilities and long-term memory using vector databases and semantic search.
 
 Feel free to ⭐️ the repo if it helps you understand long-term memory for agents!
 
+## 🚀 Features
+- **Vector Database Integration** (ChromaDB) for semantic memory search
+- **Agentic Function Calling** capabilities with OpenAI's API  
+- **Advanced Memory Management** (both SQL and vector-based)
+- **Robust Error Handling** and fallback mechanisms
+- **Production-Ready Architecture**
+
 ## 📚 What You'll Learn
 1. How to design a **custom agentic long-term memory**.
-2. How to implement **long-term memory using Vector DB and Graph DB** with **LangChain** and **LangGraph**.
-3. How to structure memory into **semantic**, **episodic**, and **procedural** components (based on the [LangChain CEO's course on DeepLearning.ai](https://www.deeplearning.ai/)).
-4. A brief overview of **letta's long-term memory model**.
+2. How to implement **long-term memory using Vector DB** with semantic search.
+3. How to structure memory into **semantic**, **episodic**, and **procedural** components.
+4. How to build **production-ready chatbots** with advanced memory capabilities.
 
 🔗 A great reference paper for this project:  
-[Memory in LLM Agents](https://arxiv.org/abs/2310.08560)  
-PDF available in the repo: `letta/MemGPT_Paper.pdf`
+[Memory in LLM Agents](https://arxiv.org/abs/2310.08560)
 
 ## ▶️ Watch the Demo  
 📺 **YouTube Video:** [Link](https://youtu.be/jw67V_gBzR0?si=OagwK44anyRoLimE)
@@ -31,21 +37,21 @@ PDF available in the repo: `letta/MemGPT_Paper.pdf`
     ```bash
     pip install -r requirements.txt
     ```
-3. Prepare the databases for the custom chatbot
+3. Prepare the databases for the chatbot
     ```bash
     python src/prepare_sqldb.py          # Setup SQLite DB  
     python src/check_sqldb.py            # Inspect DB contents  
     python src/prepare_vectordb.py       # Setup Vector DB  
     python src/check_vectordb.py         # Inspect Vector DB 
     ```
-4. Run the chatbots
+4. Run the chatbot
     - Run in terminal:
         ```bash
-        python src/bot.py
+        python src/chat_in_terminal.py
         ```
-    - Run with Gradio UI (all 3 chatbot versions available):
+    - Run with Gradio UI:
         ```bash
-        python src/bot_ui.py
+        python src/chat_in_ui.py
         ```
     
 # Project Schemas:

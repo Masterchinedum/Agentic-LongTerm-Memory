@@ -1,22 +1,15 @@
 import time
 import gradio as gr
-from utils.basic_chatbot_v1 import Chatbot
-from utils.chatbot_agentic_v2 import Chatbot as Chatbot_v2
-from utils.chatbot_agentic_v3 import Chatbot as Chatbot_v3
+from utils.chatbot import Chatbot
 
-# Initialize chatbot instances
-chatbots = {
-    "Basic-Chatbot": Chatbot(),
-    "Chatbot-Agentic-v2": Chatbot_v2(),
-    "Chatbot-Agentic-v3": Chatbot_v3(),
-}
+# Initialize chatbot instance
+chatbot = Chatbot()
 
 
-def respond(selected_bot, history, user_input):
+def respond(history, user_input):
     if not user_input.strip():
         return history, ""
 
-    chatbot = chatbots[selected_bot]
     start_time = time.time()
     response = chatbot.chat(user_input)
     end_time = time.time()
@@ -29,7 +22,7 @@ def respond(selected_bot, history, user_input):
 
 with gr.Blocks() as demo:
     with gr.Tabs():
-        with gr.TabItem("Chatbot with Agentic Memory"):
+        with gr.TabItem("Advanced Chatbot with Long-term Memory"):
             with gr.Row():
                 chatbot = gr.Chatbot(
                     [],
@@ -49,23 +42,17 @@ with gr.Blocks() as demo:
             with gr.Row():
                 text_submit_btn = gr.Button(value="Submit")
                 clear_button = gr.ClearButton([input_txt, chatbot])
-                selected_bot = gr.Dropdown(
-                    choices=["Basic-Chatbot", "Chatbot-Agentic-v2",
-                             "Chatbot-Agentic-v3"],
-                    value="Chatbot-Agentic-v3",
-                    label="Select Chatbot Version"
-                )
 
             # Handle submission
             input_txt.submit(
                 fn=respond,
-                inputs=[selected_bot, chatbot, input_txt],
+                inputs=[chatbot, input_txt],
                 outputs=[chatbot, input_txt]
             )
 
             text_submit_btn.click(
                 fn=respond,
-                inputs=[selected_bot, chatbot, input_txt],
+                inputs=[chatbot, input_txt],
                 outputs=[chatbot, input_txt]
             )
 
